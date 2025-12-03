@@ -1,0 +1,412 @@
+/*
+  @title SOUND TESTING
+  @by    Algo Rhythmz
+*/
+// +----------------------------------------------------------------+
+// | Setup                                                          |
+// +----------------------------------------------------------------+
+
+// await (async () => { (0, eval)(
+//   await(await fetch('https://raw.githubusercontent.com/switchangel/strudel-scripts/refs/heads/main/allscripts.js')).text()); })();
+
+register('acidenv', (x, pat) => pat.lpf(100).lpenv(x * 9).lps(.2).lpd(.12).lpq(2))
+
+setcpm(144/4)
+
+// +----------------------------------------------------------------+
+// | KICKS                                                          |
+// +----------------------------------------------------------------+
+
+_$Kick1: n("1 2 3 <[1 2] [- 2]>").s("bd:4!4")
+
+_$Kick3:
+  s("bd:1")
+  .beat("0,4,8,11,14",16)
+
+_$BassKick:
+  s("sbd")
+  .beat("0,4,8,11,14",16)
+
+_$HardstyleKick:
+  s("hbd")
+  .beat("0,4,8,12",16)
+  .duck("4")
+  .rel(0.4)
+  .gain(0.8)
+
+_$SnareKick:
+  s("sd:2")
+  .beat("4,12",16)
+
+_$ExclamationHighHat:
+  s("hh:4!8")
+
+_$BoingDrumKick:
+  s("bd:9!4")
+  .duck("3:4:5:6")
+  .duckdepth(0.8)
+  .duckattack(0.16)
+
+const gooo = 1
+const Structures = [
+  "~",
+  "x*4",
+  "{x ~!9 x ~!5 x ~ x ~!7 x ~!3 < ~ x > ~}%16",
+]
+samples('github:tidalcycles/dirt-samples')
+_$Kick9:
+  s("tech:5")
+  .postgain(6)
+  .pcurve(2)
+  .pdec(1)
+  .struct(pick(Structures, gooo))
+
+_$WoodblockBeat:
+  s("gm_woodblock:4 gm_woodblock:8!3")
+  .gain(1)
+
+_$BassKick1:
+  note("<0 _ _ _ 0 _ _ _ 0 _ _ _ 0 _ _ _ 0 _ _ _ 0 _ _ _ 0 _ _ _ 0 _ 0 _ >*16")
+  .trans(0)
+  .scale("a:major")
+  .s("bd:5")
+  .lpf(slider(390,0,1000,5))
+  .lpq(slider(33,0,100,1))
+  .dist("7:0.1")
+
+_$BassKick2:
+  note("<0 _ _ _ 0 _ _ _ 0 _ _ _ 0 _ _ _ 0 _ _ _ 0 _ _ _ 0 _ _ _ 0 _ 0 _ >*16")
+  .trans(-12)
+  .scale("a:major")
+  .s("bd:5")
+  .lpf(slider(285,0,1000,5))
+  .lpq(slider(6,0,100,1))
+  .dist("7:.1")
+
+_$BassKick3:
+  note("<0 _ _ _ 0 _ _ _ 0 _ _ _ 0 _ _ _ 0 _ _ _ 0 _ _ _ 0 _ _ _ 0 _ 0 _ >*16")
+  .trans(-12)
+  .scale("a:major")
+  .s("sin")
+  .trans(-12)
+  .dist("3:0.1")
+
+// +----------------------------------------------------------------+
+// | TOPS                                                           |
+// +----------------------------------------------------------------+
+
+_$Clap1:
+  s("{~ ~ rim ~ cp ~ rim cp ~!2 rim ~ cp ~ < rim ~ >!2}%8")
+  .bank("[KorgDDM110, dmx]")
+  .speed(1.2)
+  .fast(2)
+  .postgain(0.5)
+
+_$HighHatWave:
+  s("hh")
+  .struct("x*16")
+  .postgain(0.5)
+  .bank("RolandTR808")
+  .speed(1)
+  .jux(rev)
+  .room(sine.range(0.1, 0.4))
+  .gain(0.8)
+
+_$HighHat:
+  n("1 [1 2] 3 4 5 6 7 8")
+  .s("hh:0")
+  .note("e2")
+
+_$SnareAndHH:
+  stack(
+    n("< - 1 1 - >*16")
+    .s("sd:1")
+    .gain(0.3)
+    .orbit(5),
+  
+    n("<1 - - - >*16")
+    .s("hh:0"),
+
+    s("<white - - - >*16")
+    .att(0.9)
+    .orbit(6)
+  )
+
+// +----------------------------------------------------------------+
+// | BASS                                                           |
+// +----------------------------------------------------------------+
+
+_$Bass:
+  // n("<0>*16")
+  n("<7 _ _ 6 5 _ <5 3> <6 4>>*2")
+  // chord("<C _ _ _ D7 _ _ _ F _ _ _ Fm6 _ _ _>*2")
+  .scale("g:minor")
+  .trans(-24)
+  .detune(rand)
+  .orbit(4)
+  .sound("supersaw")
+  .acidenv(slider(0.634))
+  // .gain(0.5)
+
+_$GrittyBass:
+  note("<C _ _ _ _ _ G _ _ _ _ _ E _ _ _>*16")
+  .scale("a:major")
+  .trans(-12)
+  .s("supersaw")
+  .unison(16)
+  .detune(slider(0.333, 0, 1.5))
+  .dist(2)
+  .gain(0.2)
+
+_$DeepBass: 
+  note("< 0 - - - - - - - - - - - - - - >*16")
+  .scale("a:major")
+  .trans(-24)
+  // .s("sin")
+  .s("triangle")
+  .attack(slider(0.01, 0, 1)) // Attack of note
+  .release(slider(1.25, 0, 2)) // Release of note
+  .lpf(slider(3160, 20, 20000, 5)) // LPF
+  .ftype("12db") // Filter Type
+  .lpa(slider(0.0, 0, 1)) // Attack of LPF envelope
+  .lpd(slider(0.261, 0, 1)) // Decay of LPF envelope
+  .lps(slider(0.5, 0, 1)) // Sustain of LPF envelope
+  .lpr(slider(0.2, 0, 1)) // Release of LPF envelope
+  .lpq(slider(6.78, 0, 10)) // LPF Resonance
+  .lpenv(slider(8, 0, 8)) // LPF modulation depth
+  .room(0)
+  .dist(3)
+  .gain(1)
+
+_$Bassline:
+  note("[eb1, eb2]!16 [f2, f1]!16 [g2, g1]!16 [f2, f1]!8 [bb2, bb1]!8")
+  .sound("supersaw")
+  .slow(8)
+  .postgain(2)
+  .room(0.6)
+  .lpf(slider(725, 300, 2000))
+  .room(0.4)
+
+register('rlpf', (x, pat) => { return pat.lpf(pure(x).mul(12).pow(4)) })
+_$Bassline2:
+  n("< 3@3 4 5@3 6 >*2"
+    .add("-14,-21")
+  )
+  .scale("g:minor")
+  .s("supersaw")
+  .rlpf(slider(0.5))
+  .lpenv(2)
+
+_$Bassline3:
+  sound("supersaw!8")
+  .note("<a#2 c# f d#>/2"
+  .sub(12))
+  .lpenv(slider(1))
+  .dist(2)
+
+register('acidenv', (x, pat) => pat.lpf(100).lpenv(x * 9).lps(.2).lpd(.12).lpq(2))
+_$AcidBass:
+  n("<7 _ _ 6 5 _ <5 3> <6 4>>*2")
+  .scale("g:minor")
+  .trans(-24)
+  .detune(rand)
+  .orbit(4)
+  .sound("supersaw")
+  .acidenv(slider(0.634))
+
+// +----------------------------------------------------------------+
+// | PAD                                                            |
+// +----------------------------------------------------------------+
+
+// Break Down Chord Synths
+_$SynthChords:
+  // note("<C _ _ _ _ _ G _ _ _ _ _ E _ _ _>*16")
+  // .scale("a:major")
+  // chord("<C _ _ _ D7 _ _ _ F _ _ _ Fm6 _ _ _>*2").voicing()
+  chord("<Eb _ _ _ D7 _ _ _ F _ _ _ Fm6 _ _ _>*2").voicing()
+  .scale("c:major")
+  .s("supersaw")
+  .unison(16)
+  // .detune(slider(0.2715, 0, 1.5))
+  .release(0.2)
+  .cut(1)
+
+_$Pad:
+  note("<C _ _ _ _ _ G _ _ _ _ _ E _ _ _>*16")
+  .scale("a:major")
+  // chord("<Am _ _ _ _ _ Am _ _ _ _ _ G _ _ _>*16").voicing()
+  .trans(0)
+  .s("supersaw")
+  .unison(16)
+  .attack(slider(0.112, 0, 2))
+  // .delay(slider(0, 0, 2))
+  // .sustain(slider(0.236, 0, 2))
+  .release(slider(0.154, 0, 2))
+  .lpf(slider(1060, 0, 20000))
+  .room(slider(0.2, 0, 1))
+
+_$BoingySquarePad: stack(
+  "0".add("<0 2 4 3>/2")
+  .scale("a1:minor")
+  .struct("1(<3!3 5>,8)")
+  .note()
+  .cutoff(sine.range(400,3000).slow(4)).room(0.6)
+  .sound("square")
+  .acidenv(slider(0.601, 0, 1))
+  .fast(2)
+)
+
+// +----------------------------------------------------------------+
+// | ARPS                                                           |
+// +----------------------------------------------------------------+
+
+const arpeggiator = [
+  "{d4 bb3 eb3 d3 bb2 eb2}%16",
+  "{c4 bb3 f3 c3 bb2 f2}%16",
+  "{d4 bb3 g3 d3 bb2 g2}%16",
+  "{c4 bb3 f3 c3 bb2 f2}%16",
+]
+
+_$main_arp:
+  note(pick(arpeggiator, "<0 1 2 3>".slow(2)))
+  .sound("supersaw")
+  .lpf(300)
+  .sustain(0.5)
+  .release(0.01)
+  .attack(0)
+  .room(0.6)
+  .lpenv(slider(4.727, 1.25, 6))
+
+// +----------------------------------------------------------------+
+// | LEAD                                                           |
+// +----------------------------------------------------------------+
+
+_$Pluck:
+  // note("<[5 - - -] [0 - - -] [0 - - -] [0 - - -]>*4")
+  // .scale("a:major")
+  chord("<[Am - - -] [- - Am -] [- - - -] [G - - -]>*4").voicing()
+  .s("supersaw")
+  .unison(16) // Adds multiples of sound
+  .detune(slider(0.459, 0, 1.5)) // More audible multiples
+  .attack(slider(0, 0, 1)) // Attack of note
+  .release(slider(0.6, 0, 2)) // Release of note
+  .lpf(slider(60, 20, 5000, 5)) // LPF
+  .ftype("12db") // Filter Type
+  .lpa(slider(0.0, 0, 1)) // Attack of LPF envelope
+  .lpd(slider(0.05, 0, 1)) // Decay of LPF envelope
+  .lps(slider(0.2, 0, 1)) // Sustain of LPF envelope
+  .lpr(slider(0.3, 0, 1)) // Release of LPF envelope
+  .lpq(slider(2.088, 2, 10)) // LPF Resonance
+  .lpenv(slider(5.032, 1, 8)) // LPF modulation depth
+  .room(0.25)
+  .gain(1)
+
+register('rlpf', (x, pat) => { return pat.lpf(pure(x).mul(12).pow(4)) })
+_$EchoPing:
+  n("0@2 < -7 [-5 -2] >@3 < 0 -3 2 1 >@3"
+    .add(7)
+   )
+  .scale("g:minor")
+  .s("supersaw")
+  .delay(0.5)
+  .pan(rand)
+  .rlpf(slider(0.593))
+  .lpenv(2)
+
+_$RandomSynthPiano:
+  n(berlin.fast(8).mul(16).seg(8).rib(0,2).add("<0 0 0 3 0>*8"))
+  .scale("f:minor:pentatonic")
+  // .sound("piano")
+  .sound("supersaw")
+  .rel(0.1)
+  .delay(0.7)
+
+register('acidenv', (x, pat) => pat.lpf(100).lpenv(x * 9).lps(.2).lpd(.12).lpq(2))
+_$AcidSynth:
+  n("<0 4 0 9 7>*16"
+     .add("<7 _ _ 6 5 _ _ 6>*2")
+  )
+  .scale("g:minor")
+  .trans(-12)
+  .orbit(3)
+  .sound("sawtooth")
+  .acidenv(slider(0.793))
+  .delay(0.4)
+  .pan(rand) 
+  .fm(0.5) 
+  .fmwave("white")
+
+// +----------------------------------------------------------------+
+// | TESTING                                                        |
+// +----------------------------------------------------------------+
+
+// Distortion example
+_$Distortion_TEST: s("bd sd [~ bd] sd,hh*8").distort("<0 2 3 10:.5>")
+
+// Unison example
+_$Unison_TEST: note("d f a a# a d3").fast(2).s("supersaw").unison("<1 2 7>")
+
+// Sounds
+_$SoundSampler: 
+  note("<C _ _ _ _ _ G _ _ _ _ _ E _ _ _>*16")
+  .scale("a:major")
+  // .s("gm_lead_4_chiff:0") // Pipe Sound
+  // .s("gm_lead_4_chiff:3") // super saw thing
+  // .s("gm_xylophone:0") // Xylophone
+  // .s("supersaw")
+
+// Continuous LPF Envelope
+_$Continuous_LPF_Envelope:
+  s("supersaw")
+  .attack(0.1)
+  .release(0.1)
+  .seg(32)
+  .lpf(tri.range(100, 5000))
+  .gain(2)
+
+// Resonance
+_$ResonanceTester:
+  // note("<<0 4 2 -2> _ _ _>*4")
+  note("<C _ _ _ _ _ G _ _ _ _ _ E _ _ _>*16")
+  .scale("a:major")
+  // .trans(-24)
+  .s("supersaw")
+  .unison(16)
+  .lpf(5000)
+  .resonance(slider(0, 0, 10))
+  // .detune(0)
+  // .dist(2)
+  // .gain(0.2)
+
+_$AcidTester:
+  // note("<0 4 0 9 7>*8")
+  // .scale("a:major")
+  chord("<Am _ _ _ _ _ Am _ _ _ _ _ G _ _ _>*16").voicing()
+  // .trans(-12)
+  .s("supersaw")
+  .acidenv(slider(0.535, 0, 1))
+
+// Pluck (Lean on by Major Lazer) *Not finished
+_$pluck_Lean_On:
+  // note("<[5 - - -] [0 - - -] [0 - - -] [0 - - -]>*4")
+  // .scale("a:major")
+  // chord("<[Am - - -] [- - Am -] [- - - -] [G - - -]>*4").voicing()
+  chord("<[- - Gm Gm] [Eb-^7 Eb-^7 Eb-^7 Eb-^7] [- - - -] [ - - -]>*1").voicing()
+  // note("<A G G A G G A G G A G A G>*8")
+  .s("supersaw")
+  .unison(16) // Adds multiples of sound
+  .detune(slider(0.459, 0, 1.5)) // More audible multiples
+  .attack(slider(0, 0, 1)) // Attack of note
+  .release(slider(0.6, 0, 2)) // Release of note
+  .lpf(slider(60, 20, 5000, 5)) // LPF
+  .ftype("12db") // Filter Type
+  .lpa(slider(0.0, 0, 1)) // Attack of LPF envelope
+  .lpd(slider(0.05, 0, 1)) // Decay of LPF envelope
+  .lps(slider(0.2, 0, 1)) // Sustain of LPF envelope
+  .lpr(slider(0.3, 0, 1)) // Release of LPF envelope
+  .lpq(slider(2.088, 2, 10)) // LPF Resonance
+  .lpenv(slider(5.032, 1, 8)) // LPF modulation depth
+  .room(0.25)
+  .gain(1)
+
+// Raise lpf value over time to make section build up
