@@ -1,0 +1,162 @@
+/*
+  @title TEMPLATE
+  @by    Algo Rhythmz
+  @woof
+  
+     ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+     ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⠁⠸⢳⡄⠀⠀⠀⠀⠀⠀⠀⠀
+     ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠃⠀⠀⢸⠸⠀⡠⣄⠀⠀⠀⠀⠀
+     ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠃⠀⠀⢠⣞⣀⡿⠀⠀⣧⠀⠀⠀⠀
+     ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⡖⠁⠀⠀⠀⢸⠈⢈⡇⠀⢀⡏⠀⠀⠀⠀
+     ⠀⠀⠀⠀⠀⠀⠀⠀⠀⡴⠩⢠⡴⠀⠀⠀⠀⠀⠈⡶⠉⠀⠀⡸⠀⠀⠀⠀⠀
+     ⠀⠀⠀⠀⠀⠀⠀⢀⠎⢠⣇⠏⠀⠀⠀⠀⠀⠀⠀⠁⠀⢀⠄⡇⠀⠀⠀⠀⠀
+     ⠀⠀⠀⠀⠀⠀⢠⠏⠀⢸⣿⣴⠀⠀⠀⠀⠀⠀⣆⣀⢾⢟⠴⡇⠀⠀⠀⠀⠀
+     ⠀⠀⠀⠀⠀⢀⣿⠀⠠⣄⠸⢹⣦⠀⠀⡄⠀⠀⢋⡟⠀⠀⠁⣇⠀⠀⠀⠀⠀
+     ⠀⠀⠀⠀⢀⡾⠁⢠⠀⣿⠃⠘⢹⣦⢠⣼⠀⠀⠉⠀⠀⠀⠀⢸⡀⠀⠀⠀⠀
+     ⠀⠀⢀⣴⠫⠤⣶⣿⢀⡏⠀⠀⠘⢸⡟⠋⠀⠀⠀⠀⠀⠀⠀⠀⢳⠀⠀⠀⠀
+     ⠐⠿⢿⣿⣤⣴⣿⣣⢾⡄⠀⠀⠀⠀⠳⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢣⠀⠀⠀
+     ⠀⠀⠀⣨⣟⡍⠉⠚⠹⣇⡄⠀⠀⠀⠀⠀⠀⠀⠀⠈⢦⠀⠀⢀⡀⣾⡇⠀⠀
+     ⠀⠀⢠⠟⣹⣧⠃⠀⠀⢿⢻⡀⢄⠀⠀⠀⠀⠐⣦⡀⣸⣆⠀⣾⣧⣯⢻⠀⠀
+     ⠀⠀⠘⣰⣿⣿⡄⡆⠀⠀⠀⠳⣼⢦⡘⣄⠀⠀⡟⡷⠃⠘⢶⣿⡎⠻⣆⠀⠀
+     ⠀⠀⠀⡟⡿⢿⡿⠀⠀⠀⠀⠀⠙⠀⠻⢯⢷⣼⠁⠁⠀⠀⠀⠙⢿⡄⡈⢆⠀
+     ⠀⠀⠀⠀⡇⣿⡅⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠦⠀⠀⠀⠀⠀⠀⡇⢹⢿⡀
+     ⠀⠀⠀⠀⠁⠛⠓⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⠇⠁
+
+*/
+
+// +----------------------------------------------------------------+
+// | Notes                                                          |
+// +----------------------------------------------------------------+
+
+/*
+Drums
+* Establishes tempo
+Bass
+* Low frequency range, foundation & rhythm
+* Short attack
+Leads
+* Main melody
+Vocals
+* VOX
+* Main melody voices
+Pads
+* Soft, sustained, atmospheric, background
+* Slow attack
+* Slow release
+Arps
+* Plays notes in a chord one after the other
+Sound Effects
+* Distinct, non-musical sounds
+* Impact
+* Transitions
+*/
+
+// +----------------------------------------------------------------+
+// | Functions & Setup                                              |
+// +----------------------------------------------------------------+
+
+samples('github:patrick1bauer/samples')
+
+const setbpm = t => setcps(t/4/60)
+setbpm(140)
+
+// +----------------------------------------------------------------+
+// | Sounds                                                         |
+// +----------------------------------------------------------------+
+
+
+let DRUM = [
+  
+]
+
+let BASS = [
+  
+]
+
+let LEAD = [
+  
+]
+
+let VOX = [
+  
+]
+
+let PADS = [
+  
+]
+
+let ARPS = [
+  
+]
+
+let SFX = [
+  
+]
+
+let SFX_TC = [
+  s("thunderclap")
+  .late(0.8)
+  .gain(0.8)
+  .fast(1)
+]
+
+// +----------------------------------------------------------------+
+// | Patterns                                                       |
+// +----------------------------------------------------------------+
+
+let THUNDERCLAP = stack(
+  SFX_TC
+)
+
+let INTRO = stack(
+
+)
+
+let VERSE = stack(
+  
+)
+
+let BUILD = stack(
+  
+)
+
+let DROP = stack(
+  
+)
+
+let BREAKDOWN = stack(
+  
+)
+
+let BRIDGE = stack(
+  
+)
+
+let OUTRO = stack(
+  
+)
+
+// +----------------------------------------------------------------+
+// | Arrangement                                                    |
+// +----------------------------------------------------------------+
+
+arrange(
+  [1, THUNDERCLAP],
+  [16, INTRO],     // DRUM SFX  ARPS
+  [16, VERSE],     // DRUM BASS PADS VOX
+  [16, BUILD],     // DRUM SFX  LEAD
+  [16, DROP],      // DRUM BASS LEAD
+  [16, BREAKDOWN], // PADS ARP  VOX
+  [16, BRIDGE],    // ARP  PAD  VOX
+  [16, OUTRO],     // DRUM BASS SFX
+)
+.fontFamily("monocraft")
+.fontSize(24)
+.theme("githubDark")
+// .theme("archBtw")
+// .theme("greenText")
+// .theme("redText")
+  
+._punchcard()
+._scope()
+.color("cyan")
